@@ -6,3 +6,31 @@ theme: totez
 # Advanced ActiveRecord Queries
 
 ---
+# Scopes
+
+---
+## Such things
+
+---
+# Joins
+
+---
+# Eager Loading
+
+---
+# Enum
+
+---
+# Dynamic methods
+
+---
+# Method Chaining
+
+---
+# Counts && Such
+
+---
+# Helpers
+
+---
+# END
