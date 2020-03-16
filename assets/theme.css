@@ -3,7 +3,7 @@
 @theme totez
 @author reecebisel
 */
-@import url("https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Ubuntu+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Righteous|Roboto|Ubuntu&display=swap");
 /*
 Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
 */
@@ -187,107 +187,107 @@ section {
   letter-spacing: 1.25px;
   padding: 70px;
   width: 960px;
-  color: #3D5191;
-  background-color: #A9C5DB; }
+  color: #011627;
+  background-color: #FAFAFF; }
   section > *:first-child,
   section > header:first-child + * {
     margin-top: 0; }
   section a,
   section mark {
-    color: #385E85; }
+    color: #FE9000; }
   section code {
-    background: #5368a0;
-    color: #A9C5DB; }
+    background: #334452;
+    color: #FAFAFF; }
   section h1 strong,
   section h2 strong,
   section h3 strong,
   section h4 strong,
   section h5 strong,
   section h6 strong {
-    color: #385E85; }
+    color: #FE9000; }
   section pre > code {
-    background: #3D5191; }
+    background: #011627; }
   section header,
   section footer,
   section section::after,
   section blockquote::before,
   section blockquote::after {
-    color: #5368a0; }
+    color: #334452; }
   section table th,
   section table td {
-    border-color: #3D5191; }
+    border-color: #011627; }
   section table thead th {
-    background: #3D5191;
-    color: #A9C5DB; }
+    background: #011627;
+    color: #FAFAFF; }
   section table tbody > tr:nth-child(odd) td,
   section table tbody > tr:nth-child(odd) th {
-    background: rgba(61, 81, 145, 0.1); }
+    background: rgba(1, 22, 39, 0.1); }
   section.invert {
-    color: #A9C5DB;
-    background-color: #3D5191; }
+    color: #FAFAFF;
+    background-color: #011627; }
     section.invert a,
     section.invert mark {
-      color: #3D9176; }
+      color: #FFDD4A; }
     section.invert code {
-      background: #93aecc;
-      color: #3D5191; }
+      background: #c8ccd4;
+      color: #011627; }
     section.invert h1 strong,
     section.invert h2 strong,
     section.invert h3 strong,
     section.invert h4 strong,
     section.invert h5 strong,
     section.invert h6 strong {
-      color: #3D9176; }
+      color: #FFDD4A; }
     section.invert pre > code {
-      background: #A9C5DB; }
+      background: #FAFAFF; }
     section.invert header,
     section.invert footer,
     section.invert section::after,
     section.invert blockquote::before,
     section.invert blockquote::after {
-      color: #93aecc; }
+      color: #c8ccd4; }
     section.invert table th,
     section.invert table td {
-      border-color: #A9C5DB; }
+      border-color: #FAFAFF; }
     section.invert table thead th {
-      background: #A9C5DB;
-      color: #3D5191; }
+      background: #FAFAFF;
+      color: #011627; }
     section.invert table tbody > tr:nth-child(odd) td,
     section.invert table tbody > tr:nth-child(odd) th {
-      background: rgba(169, 197, 219, 0.1); }
+      background: rgba(250, 250, 255, 0.1); }
   section.gaia {
-    color: #A9C5DB;
-    background-color: #385E85; }
+    color: #FAFAFF;
+    background-color: #FE9000; }
     section.gaia a,
     section.gaia mark {
-      color: #3D9176; }
+      color: #FFDD4A; }
     section.gaia code {
-      background: #92b0ca;
-      color: #385E85; }
+      background: #fbe5cc;
+      color: #FE9000; }
     section.gaia h1 strong,
     section.gaia h2 strong,
     section.gaia h3 strong,
     section.gaia h4 strong,
     section.gaia h5 strong,
     section.gaia h6 strong {
-      color: #3D9176; }
+      color: #FFDD4A; }
     section.gaia pre > code {
-      background: #A9C5DB; }
+      background: #FAFAFF; }
     section.gaia header,
     section.gaia footer,
     section.gaia section::after,
     section.gaia blockquote::before,
     section.gaia blockquote::after {
-      color: #92b0ca; }
+      color: #fbe5cc; }
     section.gaia table th,
     section.gaia table td {
-      border-color: #A9C5DB; }
+      border-color: #FAFAFF; }
     section.gaia table thead th {
-      background: #A9C5DB;
-      color: #385E85; }
+      background: #FAFAFF;
+      color: #FE9000; }
     section.gaia table tbody > tr:nth-child(odd) td,
     section.gaia table tbody > tr:nth-child(odd) th {
-      background: rgba(169, 197, 219, 0.1); }
+      background: rgba(250, 250, 255, 0.1); }
   section.lead {
     display: flex;
     flex-direction: column;
@@ -359,6 +359,6 @@ section {
   font-family: "Ubuntu Condensed";
   flex-direction: column; }
   section h1, section h2, section h3, section h4, section h5 {
-    font-family: "Montserrat Subrayada"; }
+    font-family: "Righteous"; }
 
 /*# sourceMappingURL=theme.css.map */

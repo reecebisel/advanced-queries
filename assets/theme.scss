@@ -3,24 +3,22 @@
 @author reecebisel
 */
 
-$purple:      #3D5191;
-$gray-blue:   #385E85;
-$baby-blue:   #3E7585;
-$mint:        #285E5C;
-$seafoam:     #3D9176;
-$main-gray:   #A9C5DB;
-$deep-gray:   #3D474F;
+$darkish:   #011627;
+$lightish:  #FAFAFF;
+$blueish:   #5ADBFF;
+$yellowish: #FFDD4A;
+$orangeish: #FE9000;
 
-$background:      $main-gray;
-$color-light:     $main-gray;
-$color-dark:      $purple;
-$color-primary:   $gray-blue;
-$color-secondary: $seafoam;
+$background:      $lightish;
+$color-light:     $lightish;
+$color-dark:      $darkish;
+$color-primary:   $orangeish;
+$color-secondary: $yellowish;
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Righteous|Roboto|Ubuntu&display=swap');
 @import './simple';
 
-$heading-font: 'Montserrat Subrayada';
+$heading-font: 'Righteous';
 $main-font:    'Ubuntu Condensed';
 
 section {
