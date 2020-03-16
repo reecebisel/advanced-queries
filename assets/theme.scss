@@ -1,0 +1,37 @@
+/* 
+@theme totez
+@author reecebisel
+*/
+
+$purple:      #3D5191;
+$gray-blue:   #385E85;
+$baby-blue:   #3E7585;
+$mint:        #285E5C;
+$seafoam:     #3D9176;
+$main-gray:   #A9C5DB;
+$deep-gray:   #3D474F;
+
+$background:      $main-gray;
+$color-light:     $main-gray;
+$color-dark:      $purple;
+$color-primary:   $gray-blue;
+$color-secondary: $seafoam;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Ubuntu+Condensed&display=swap');
+@import './simple';
+
+$heading-font: 'Montserrat Subrayada';
+$main-font:    'Ubuntu Condensed';
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $main-font;
+  flex-direction: column;
+
+  h1, h2, h3, h4, h5 {
+    font-family: $heading-font;
+  }
+}
+
