@@ -146,6 +146,111 @@ PlayerCharacter.unscoped.actually_totally_dead
 # Joins
 
 ---
+### Given
+```ruby
+class PlayerCharacter < ApplicationRecord
+  belongs_to :user
+  has_many :player_classes
+end
+
+class PlayerClass < ApplicationRecord
+  belongs_to :player_character
+  has_many :spells
+end
+
+class Spell < ApplicationRecord
+  belongs_to :player_class
+end
+```
+
+---
+### SQL Fragment
+
+```ruby
+PlayerCharacter.joins(
+  "LEFT OUTER JOIN player_classes "            \
+    "ON player_classes.player_character_id = " \
+    "player_character.id"
+)
+```
+---
+### Provides
+
+```SQL
+SELECT player_characters.* FROM player_characters
+LEFT OUTER JOIN player_classes ON
+player_classes.player_character_id = player_character.id;
+```
+---
+### Hash/Array Relationship Style
+
+```ruby
+PlayerCharacter.joins(:user)
+```
+---
+### The SQLs
+
+```SQL
+SELECT player_characters.* FROM player_characters
+INNER JOIN users ON player_characters.user_id = user.id;
+```
+
+---
+### Joining Multiple Associations
+
+```ruby
+PlayerCharacter.joins(:user, :player_classes)
+```
+
+---
+### Executes
+
+```SQL
+SELECT player_characters.* FROM player_characters
+INNER JOIN users ON
+  player_characters.user_id = user.id
+INNER JOIN player_classes ON
+  player_classes.player_character_id = player_characters.id;
+```
+
+---
+### Join nested relationships
+
+```ruby
+PlayerCharacter.joins(player_classes: :spells)
+```
+
+---
+### Nested Join SQL Produces
+
+```SQL
+SELECT player_characters.* FROM player_characters
+INNER JOIN player_classes ON
+   player_classes.player_character_id = player_characters.id;
+INNER JOIN spells ON
+  spells.player_class_id = player_class.id;
+```
+
+---
+### Specifying Conditions on nested associations
+
+---
+### With SQL fragment
+
+```ruby
+PlayerCharacter.joins(player_classes: :spells).
+  where("spells.name = ?", "Toll of the dead")
+```
+
+---
+### Nested Style
+
+```ruby
+PlayerCharacter.joins(player_classes: :spells).
+  where(spells: { name: "Toll of the dead" })
+```
+
+---
 # Eager Loading
 
 ---
