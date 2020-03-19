@@ -324,7 +324,7 @@ PlayerCharacter.includes(:player_classes).
 # Dynamic methods
 
 ---
-### find_by_column
+### Find By Column
 
 ```ruby
 PlayerCharacter.find_by_name("Nacia")
@@ -339,7 +339,7 @@ WHERE `player_characters`.`name` = "Nacia"
 LIMIT 1;
 ```
 ---
-### find_or_create_by
+### Find Or Create By
 
 ```ruby
 PlayerCharacter.find_or_create_by(name: "Nacia")
@@ -359,7 +359,7 @@ COMMIT
 ```
 
 ---
-### find_or_intialize_by
+### Find Or Initialize By
 
 ```ruby
 PlayerCharacter.find_or_initialize_by(name: "Nacia")
@@ -499,7 +499,7 @@ FROM `player_characters`;
 # Using SQL Strings
 
 ---
-### find_by_sql
+### Find By Sql
 
 Returns instances of Spell ActiveRecord class. 
 
@@ -517,7 +517,7 @@ Spells.find_by_sql(
 ```
 
 ---
-### select_all
+### Select All
 This requires that you write valid SQL for your DB
 
 
@@ -548,7 +548,7 @@ WHERE `player_characters`.`user_id` = 1337;
 ```
 
 ---
-### pluck
+### Pluck
 And it's magnificence
 
 ```ruby
@@ -575,7 +575,7 @@ WHERE `player_characters`.`user_id` = 1337;
 # Helpers
 
 ---
-### to_sql
+### To Sql
 
 ```ruby
 PlayerCharacter.joins(:player_class).
