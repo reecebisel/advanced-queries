@@ -207,9 +207,9 @@ PlayerCharacter.joins(:user, :player_classes)
 
 ```SQL
 SELECT player_characters.* FROM player_characters
-INNER JOIN users ON
+INNER JOIN users ON 
   player_characters.user_id = user.id
-INNER JOIN player_classes ON
+INNER JOIN player_classes ON 
   player_classes.player_character_id = player_characters.id;
 ```
 
@@ -225,14 +225,14 @@ PlayerCharacter.joins(player_classes: :spells)
 
 ```SQL
 SELECT player_characters.* FROM player_characters
-INNER JOIN player_classes ON
+INNER JOIN player_classes ON 
    player_classes.player_character_id = player_characters.id;
 INNER JOIN spells ON
   spells.player_class_id = player_class.id;
 ```
 
 ---
-### Specifying Conditions on nested associations
+### Specifying Conditions on nested associations 
 
 ---
 ### With SQL fragment
