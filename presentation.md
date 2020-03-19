@@ -6,14 +6,16 @@ theme: totez
 # Advanced ActiveRecord Queries
 
 ---
+<!-- _class: invert -->
 # Scopes
 
 ---
+
 ### Rails way
 
 ```ruby
 class PlayerCharacter < ApplicationRecord
-  scope :dead -> { where(status: "dead") }
+  scope :dead, -> { where(status: "dead") }
 end
 ```
 
@@ -53,7 +55,8 @@ end
 ```
 
 ---
-### Chaining scopes with arguments
+### Chaining scopes 
+#### with arguments
 
 ```ruby
   PlayerCharacter.created_before(3.days.ago).dead
@@ -81,7 +84,7 @@ PlayerCharacter.alive.dead
 ```
 
 ---
-# Merged SQL
+### Merged SQL
 
 ```SQL
 SELECT * FROM `player_characters`
@@ -90,7 +93,12 @@ AND   `player_characters`.`status` = "dead";
 ```
 
 ---
+<!-- _class: invert -->
+
 # Default Scopes
+
+---
+![Devil Tool](https://media1.giphy.com/media/3o7ypFfZoWqCgnmJRS/giphy.gif?cid=6104955e7b3ddad7ebbca6bdd3f73fa0ec5b05ec1ce1e4ac&rid=giphy.gif)
 ### The Devil's tool
 
 ---
@@ -135,7 +143,11 @@ AND   `player_character`.`status` = "dead";
 ```
 
 ---
-## Getting yourself out of a pickle
+![Get Out](https://media1.giphy.com/media/s0UqJX0nvBQs/giphy.gif?cid=6104955efcab03d02d10786bd7264f170cc5dd9e8704295b&rid=giphy.gif)
+### Getting yourself out of a pickle
+
+---
+### unscoped
 
 ```ruby
 PlayerCharacter.unscoped.actually_totally_dead
@@ -251,13 +263,14 @@ PlayerCharacter.joins(player_classes: :spells).
 ```
 
 ---
+<!-- _class: invert -->
 # Eager Loading
 
 ---
 ### n + 4 life
 
 ```ruby
-@nrb_transactions.each do |t|
+@new_round_transactions.each do |t|
   if t.bridge_notes_balance.to_f > 0
     ...
     @company.debts.each do |d|
@@ -271,7 +284,7 @@ end
 ```
 
 ---
-### Eager Loading
+### Includes
 
 ```ruby
 PlayerCharacter.includes(:player_classes)
@@ -307,6 +320,7 @@ PlayerCharacter.includes(:player_classes).
 ```
 
 ---
+<!-- _class: invert -->
 # Dynamic methods
 
 ---
@@ -361,8 +375,9 @@ LIMIT 1;
 ```
 
 ---
+<!-- _class: lead -->
 ### Counts && Such
-<!-- Any ActiveRecord::Relation object can have count called on it. -->
+Any ActiveRecord::Relation object can have `count` called on it.
 
 ```ruby
 PlayerCharacter.count
@@ -380,7 +395,8 @@ SELECT COUNT(*) FROM `player_characters`;
 
 ```ruby
 PlayerCharacters.includes(:player_classes).
-  where(name: "Nacia", player_classes: { name: "cleric" })
+  where(name: "Nacia", player_classes: { name: "cleric" }).
+  count
 ```
 
 ---
