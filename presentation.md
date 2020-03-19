@@ -495,7 +495,115 @@ FROM `player_characters`;
 ```
 
 ---
+<!-- _class: invert -->
+# Using SQL Strings
+
+---
+### find_by_sql
+
+Returns instances of Spell ActiveRecord class. 
+
+
+```ruby
+Spells.find_by_sql(
+  "SELECT `spells`.* FROM `spells`"                     \
+  "INNER JOIN `player_classes` ON "                     \
+  "`spells`.`player_class_id` = `player_classes`.`id` " \
+  "WHERE `player_classes`.`id` = 3 "                    \
+  "ORDER BY `spells`.`level` DESC"
+)
+
+#=> [#<Spell id: 42, level: 0..>, #<Spell id: 67, level: ..]
+```
+
+---
+### select_all
+This requires that you write valid SQL for your DB
+
+
+```ruby
+PlayerCharacter.connection.select_all(
+  "SELECT name, height FROM player_characters " \
+  "WHERE height = '198 cm';"
+)
+#=> [
+#     { name: "Thornok", height: "198 cm" }, 
+#     { name: "Terry Crews", height: "198 cm" },
+#     ...
+#   ]
+```
+---
+### ids
+
+```ruby
+PlayerCharacter.where(user_id: 1337).ids
+#+> [5, 7, 31]
+```
+---
+### Executes
+
+```SQL
+SELECT `player_characters`.`id` FROM `player_characters`
+WHERE `player_characters`.`user_id` = 1337;
+```
+
+---
+### pluck
+And it's magnificence
+
+```ruby
+PlayerCharacter.where(user_id: 1337).pluck(:name)
+```
+
+---
+### Replaces code like this
+
+```ruby
+PlayerCharacter.where(user_id: 1337).map(&:name)
+```
+
+---
+### Produces
+
+```SQL
+SELECT `player_characters`.`name` FROM `player_characters`
+WHERE `player_characters`.`user_id` = 1337;
+```
+
+---
+<!-- _class: invert -->
 # Helpers
 
 ---
-# END
+### to_sql
+
+```ruby
+PlayerCharacter.joins(:player_class).
+  where(player_class: { name: "cleric" }).to_sql
+
+#=> SELECT * FROM `player_characters`
+#   INNER JOIN `player_classes`
+#   ON `player_classes`.`player_character_id` = 
+#     `player_characters`.id
+#   WHERE `player_classes`.`name` = "Cleric";
+```
+
+---
+### Explain
+
+```ruby
+PlayerCharacter.where(name: "Nacia").explain
+```
+
+---
+<!-- _class: lead -->
+
+### Demo Time
+because every database is different with its explain command. 
+
+---
+<!-- _class: invert -->
+
+![END](https://media0.giphy.com/media/5bo7UYW69cYQZA4tOF/giphy-downsized.gif?cid=6104955ea0f3a143677049fc052aa667bfca29993a6aaebe&rid=giphy-downsized.gif)
+
+# Fin
