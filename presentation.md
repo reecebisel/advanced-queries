@@ -533,7 +533,24 @@ PlayerCharacter.connection.select_all(
 #   ]
 ```
 ---
-### ids
+### Update All
+
+```ruby
+PlayerCharacter.where(user_id: 1337).
+  update_all(user_id: 51)
+```
+
+---
+### Update SQL
+
+```SQL
+UPDATE `player_characters` 
+SET `player_characters`.`user_id` = 51 
+WHERE `player_characters`.`user_id` = 1337;
+```
+
+---
+### Ids
 
 ```ruby
 PlayerCharacter.where(user_id: 1337).ids
