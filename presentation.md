@@ -254,16 +254,229 @@ PlayerCharacter.joins(player_classes: :spells).
 # Eager Loading
 
 ---
-# Enum
+### n + 4 life
+
+```ruby
+@nrb_transactions.each do |t|
+  if t.bridge_notes_balance.to_f > 0
+    ...
+    @company.debts.each do |d|
+      if d.convertible == @nrb.security
+        d.issuances.each do |debt_issuance|
+        ...
+      end
+    end
+  end
+end
+```
+
+---
+### Eager Loading
+
+```ruby
+PlayerCharacter.includes(:player_classes)
+
+# With nested associations
+PlayerCharacter.includes(player_classes: :spells)
+
+# With nested association conditions
+PlayerCharacter.includes(player_classes: :spells).
+  where(spells: { name: "Toll of the dead" })
+```
+
+---
+### SQL Produced
+<!-- includes creates 3 queries for all the associations --->
+
+```SQL
+SELECT `player_character`.* FROM `player_characters`;
+
+SELECT `player_classes`.* FROM `player_classes`;
+
+SELECT `spells`.* FROM `spells` 
+WHERE `spells`.`name` = "Toll of the dead";
+```
+
+---
+### Refences
+
+```ruby
+PlayerCharacter.includes(:player_classes).
+  where("player_classes.name = ?", "cleric").
+  references(:player_classes)
+```
 
 ---
 # Dynamic methods
 
 ---
-# Method Chaining
+### find_by_column
+
+```ruby
+PlayerCharacter.find_by_name("Nacia")
+```
 
 ---
-# Counts && Such
+### Regular SQL
+
+```SQL
+SELECT `player_characters`.* FROM `player_characters`
+WHERE `player_characters`.`name` = "Nacia"
+LIMIT 1;
+```
+---
+### find_or_create_by
+
+```ruby
+PlayerCharacter.find_or_create_by(name: "Nacia")
+```
+---
+### Dynamic Creation
+
+```SQL
+SELECT `player_characters`.* FROM `player_characters`
+WHERE `player_characters`.`name` = "Nacia"
+LIMIT 1;
+
+BEGIN
+INSERT INTO `player_characters` (created_at, ,,,,)
+VALUES ("2020-02-18 05:32:00 ")
+COMMIT
+```
+
+---
+### find_or_intialize_by
+
+```ruby
+PlayerCharacter.find_or_initialize_by(name: "Nacia")
+```
+
+---
+### Dynamic Initialization
+
+```SQL
+SELECT * FROM `player_characters`
+WHERE `player_characters`.`name` = "Nacia"
+LIMIT 1;
+```
+
+---
+### Counts && Such
+<!-- Any ActiveRecord::Relation object can have count called on it. -->
+
+```ruby
+PlayerCharacter.count
+```
+
+---
+### Count SQL
+
+```SQL
+SELECT COUNT(*) FROM `player_characters`;
+```
+
+---
+### More Advanced Relations
+
+```ruby
+PlayerCharacters.includes(:player_classes).
+  where(name: "Nacia", player_classes: { name: "cleric" })
+```
+
+---
+<style scoped>
+  code {
+    font-size: 0.6em;
+  }
+</style>
+
+### Produces
+
+```SQL
+SELECT COUNT(`player_characters`.`id`) AS `count_all` 
+FROM `player_characters`
+LEFT OUTER JOIN `player_classes` 
+ON `player_classes`.`player_character_id` = `player_character`.`id`
+WHERE (
+  `player_characters`.`name` = "Nacia" AND
+  `player_classes`.`name` = "cleric
+);
+```
+
+---
+### Count By Column
+<!-- See how many records are in the DB with an age set -->
+
+```ruby
+PlayerCharacter.count(:age)
+```
+
+---
+### SQL
+
+```SQL
+SELECT COUNT(`player_characters`.`age`)
+FROM `accounts`;
+```
+---
+### Averages
+
+```ruby
+PlayerCharacter.average(:age)
+```
+
+---
+### Average SQL
+
+```SQL
+SELECT AVG(`player_characters`.`age`) 
+FROM `player_characters`;
+```
+
+---
+### Minimum
+
+```ruby
+PlayerCharacter.minimum(:age)
+```
+
+---
+### Min SQL
+
+```SQL  
+SELECT MIN(`player_characters`.`age`) 
+FROM `player_characters`;
+```
+
+---
+### Max
+
+```ruby
+PlayerCharacter.maximum(:age)
+```
+
+---
+### Max SQL
+
+```SQL  
+SELECT MAX(`player_characters`.`age`) 
+FROM `player_characters`;
+```
+
+---
+### Sum
+
+```ruby
+PlayerCharacter.sum(:death_saves)
+```
+
+--- 
+### Sum SQL 
+
+```SQL
+SELECT SUM(`player_characters`.`death_saves`)
+FROM `player_characters`;
+```
 
 ---
 # Helpers
